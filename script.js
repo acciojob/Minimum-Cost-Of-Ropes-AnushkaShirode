@@ -1,6 +1,6 @@
-function calculateMinCost() {
-  //your code here
-	 var res = 0;
+function minimumCost() {
+    
+    var res = 0;
     var cost = 0;
     var inputArray = document.getElementById("inputArr").value;
     inputArray = inputArray.split(',').map(Number);
@@ -14,7 +14,4 @@ function calculateMinCost() {
         inputArray[inputArray.length] = res;   
     }  
     document.getElementById("result").innerHTML = cost;
-  
-  
-  
-}  
+}
