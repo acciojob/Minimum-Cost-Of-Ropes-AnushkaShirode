@@ -1,17 +1,36 @@
-function minimumCost() {
-    
-    var res = 0;
-    var cost = 0;
-    var inputArray = document.getElementById("inputArr").value;
-    inputArray = inputArray.split(',').map(Number);
-    for (let i = 0; i < inputArray.length - 1; i += 0) {
-        if (inputArray.length == 0) break;
-		// sort by decreasing order
-        inputArray = inputArray.sort((a,b) => b-a);
-        res = inputArray.pop() + inputArray.pop();
-        cost += res;
-		// adding res to arrayy
-        inputArray[inputArray.length] = res;   
-    }  
-    document.getElementById("result").innerHTML = cost;
+const val = document.querySelector('#rope-lengths');
+const result = document.getElementById("result")
+ 
+function calculateMinCost() {
+	const arr = (val.value).split(", ").map((e) => parseInt(e));
+	const n = arr.length
+	 let pq = [];
+   
+        // Adding items to the pQueue
+        for (let i = 0; i < n; i++) {
+            pq.push(arr[i]);
+        }   
+           
+        pq.sort(function(a,b){return a-b;});
+         
+        // Initialize result
+        let res = 0;
+   
+        // While size of priority queue
+        // is more than 1
+        while (pq.length > 1) {
+            // Extract shortest two ropes from pq
+            let first = pq.shift();
+            let second = pq.shift();
+   
+            // Connect the ropes: update result
+            // and insert the new rope to pq
+            res += first + second;
+            pq.push(first + second);
+            pq.sort(function(a,b){return a-b;});
+        }
+  
+        return res;
+        result.innerText = res;
 }
+ 
